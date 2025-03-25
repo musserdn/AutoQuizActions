@@ -4,4 +4,4 @@ jobs:
     docker:
     - image: cimg/base:current
     steps:
-      -run: echo "Hello, World!"
+      - run: echo "Hello, World!"
