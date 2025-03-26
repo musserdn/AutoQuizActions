@@ -1,5 +1,5 @@
 # AutoQuizActions
- This project using continuous integration and continuous delivery/deployment (CI/CD) into an existing quiz application. The application, built using the MERN stack (MongoDB, Express.js, React, Node.js), allows users to take a tech quiz, view random questions, and see their score at the end. 
+ This project using continuous integration and continuous delivery/deployment (CI/CD) into an existing quiz application. The application, built using the MERN stack (MongoDB, Express.js, React, Node.js), allows users to take a tech quiz, view random questions, and see their score at the end.
 
 ## Features
 - **Component Testing**: Verifies individual Quiz component, ensuring it functions correctly in isolation.
