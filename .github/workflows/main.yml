@@ -60,4 +60,6 @@ jobs:
 
       # Run Cypress tests
       - name: Run Cypress Tests
-        run: npx cypress run --component
+        run: | 
+          npx run test-component
+          npm run test
