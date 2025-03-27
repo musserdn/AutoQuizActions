@@ -1,11 +1,8 @@
 # Name of workflow
 name: Lint and Test workflow
 
-# Trigger workflow on push and pull requests
-on: 
-  push:
-    branches:
-      - main
+# Trigger workflow on all pull requests
+on:
   pull_request:
     branches:
       - develop
@@ -32,6 +29,9 @@ jobs:
       - name: 🧰 Install Deps
         run: npm install
         
+      # Run lint
+      - name: Run Lint
+        run: npm run lint
 
       # Run build
       - name: Run Build
