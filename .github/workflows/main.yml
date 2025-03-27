@@ -32,6 +32,10 @@ jobs:
       - name: 🧰 Install Deps
         run: npm install
 
+      # Run the build
+      - name: Build
+        run: npm run build
+
       # Start the server
       - name: Start Server
         run: npm run start
