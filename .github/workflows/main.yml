@@ -3,10 +3,7 @@ name: Dev Test workflow
 
 # Trigger workflow on push and pull requests
 on:
-  push:
-    branches:
-      - feature
-  pull_request:
+   pull_request:
     branches:
       - develop
       - staging
