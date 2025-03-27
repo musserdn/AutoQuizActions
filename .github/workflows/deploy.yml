@@ -10,13 +10,42 @@ on:
 jobs:
     ci:
       runs-on: ubuntu-latest
+            
+      services:
+        mongodb:
+          image: mongo:5.0
+          ports:
+            - 27017:27017
+          options: >-
+            --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 3
+
       steps:
         - uses: actions/checkout@v3
+
+        - name: Use Node.js 21.x
+          uses: actions/setup-node@v3
+          with:
+            node-version: 21.x
 
         - name: Test
           run: |
             npm install
-            npm run test
+            npm run build
+            npm run start
+          env:
+            PORT: 3001
+            MONGODB_URI: mongodb://127.0.0.1:27017/techquiz
+          
+        - name: Wait for Server
+          run: npx wait-on http://localhost:3001
+    
+          
+        - name: Run Cypress Tests
+          run: npx cypress run --component
+
 
         - name: Deploy
           if: github.ref == 'refs/heads/main'
