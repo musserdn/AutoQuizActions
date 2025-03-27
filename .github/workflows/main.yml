@@ -1,12 +1,9 @@
 # Name of workflow
-name: Lint and Test workflow
+name: Dev Test workflow
 
 # Trigger workflow on push and pull requests
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+   pull_request:
     branches:
       - develop
       - staging
@@ -31,10 +28,10 @@ jobs:
     # Steps in job
     steps:
       # Get code from repo
-      - name: Checkout code
+      - name: 🧑‍💻 Checkout code
         uses: actions/checkout@v3
 
-      - name: Use Node.js 21.x
+      - name: 🟢 Use Node.js 21.x
         uses: actions/setup-node@v3
         with:
           node-version: 21.x
@@ -44,20 +41,20 @@ jobs:
         run: npm install
 
       # Run the build
-      - name: Build
+      - name: 🛠️ Build
         run: npm run build
 
       # Start the server
-      - name: Start Server
+      - name: 🏎️ Start Server
         run: npm run start &
         env:
           PORT: 3001
           MONGODB_URI: mongodb://127.0.0.1:27017/techquiz
 
       # Wait for the server to be ready
-      - name: Wait for Server
+      - name: 🕜 Wait for Server
         run: npx wait-on http://localhost:3001
 
       # Run Cypress tests
-      - name: Run Cypress Tests
-        run: npx cypress run --component
+      - name: 🧪 Run Cypress Tests
+        run: npm run test-component
