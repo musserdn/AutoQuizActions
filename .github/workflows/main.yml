@@ -34,7 +34,7 @@ jobs:
 
       # Start the server
       - name: Start Server
-        run: npm run start:server &
+        run: npm run start
         env:
           PORT: 3001
 
