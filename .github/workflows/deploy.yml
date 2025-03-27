@@ -44,8 +44,7 @@ jobs:
     
           
         - name: Run Cypress Tests
-          run: npx cypress run --component
-
+          run: npx run test-component
 
         - name: Deploy
           if: github.ref == 'refs/heads/main'
