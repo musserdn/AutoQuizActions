@@ -1,8 +1,11 @@
 # Name of workflow
-name: Lint workflow
+name: Lint and Test workflow
 
-# Trigger workflow on all pull requests
+# Trigger workflow on push and pull requests
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - develop
@@ -28,7 +31,17 @@ jobs:
       # Install dependencies
       - name: 🧰 Install Deps
         run: npm install
-        
-      # Run lint
-      - name: Run Lint
-        run: npm run lint
+
+      # Start the server
+      - name: Start Server
+        run: npm run start:server &
+        env:
+          PORT: 3001
+
+      # Wait for the server to be ready
+      - name: Wait for Server
+        run: npx wait-on http://localhost:3001
+
+      # Run Cypress tests
+      - name: Run Cypress Tests
+        run: npx cypress run --component
